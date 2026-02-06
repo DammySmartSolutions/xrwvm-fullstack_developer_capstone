@@ -1,31 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <title>Contact Us</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="stylesheet" href="/static/bootstrap.min.css">
-  <link rel="stylesheet" href="/static/style.css">
+<link rel="stylesheet" href="/static/style.css">
+<link rel="stylesheet" href="/static/bootstrap.min.css">
 </head>
-
-<body>
-
-  <!-- Navbar -->
+<div>
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
     <div class="container-fluid">
-      <h2 class="me-4">Dealerships</h2>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-              data-bs-target="#navbarText" aria-controls="navbarText"
-              aria-expanded="false" aria-label="Toggle navigation">
+      <h2 style="padding-right: 5%;">Dealerships</h2>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" style="font-size: larger;" href="/">Home</a>
+            <a class="nav-link" style="font-size: larger;" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" style="font-size: larger;" href="/about">About Us</a>
@@ -37,48 +25,31 @@
       </div>
     </div>
   </nav>
-
-  <!-- Contact Card -->
-  <div class="container my-4">
-    <div class="contact-card">
-
-      <!-- Top banner image -->
-      <div class="contact-banner">
-        <img src="/static/cars.jpg" class="img-fluid w-100" alt="Dealership Lot">
+  
+    <div class="card" style="width: 80%;margin: auto; margin-top:5%;">
+      <div class="banner" name="about-header">
+        <h1>Contact Us</h1>
+      </div>
+      <div style="display: flex;flex-direction: row; margin:auto">
+        <div class="card" style="width: 50%;">
+           <img class="card-img-top" src="/static/cars.jpg" alt="Card image" >
+            
       </div>
 
-      <!-- Bottom split section -->
-      <div class="contact-content">
-        <!-- Left icon -->
-        <div class="contact-left text-center">
-          <img src="/static/cust.jpg" class="contact-icon" alt="Support Icon">
-        </div>
-
-        <!-- Divider -->
-        <div class="contact-divider"></div>
-
-        <!-- Right text -->
-        <div class="contact-right text-center">
-          <p class="contact-link">Contact Customer Service</p>
-          <p class="contact-link">support@bestcars.com</p>
-
-          <p class="contact-link">Contact our National Advertising team</p>
-          <p class="contact-link">NationalSales@bestcars.com</p>
-
-          <p class="contact-link">Contact our Public Relations team</p>
-          <p class="contact-link">PR@bestcars.com</p>
-
-          <p class="contact-link">Contact the bestcars.com offices</p>
-          <p class="contact-link">312-611-1111</p>
-
-          <p class="contact-link">Become a bestcars.com car dealer</p>
-          <p class="contact-link">Visit growwithbestcars.com</p>
+      <div class="card" style="width: 50%; ">
+        <img class="card-img-top" src="/static/cust.jpg" alt="Card image" >
+        <div class="card-body">
+          <p class="title"> Contact Customer Service</p>
+          <p class="card-text">Our customer service team is available to help with enquiries, support, and general information. </p>
+          <p>Email: <a href="mailto:support@toyota.com">support@toyota.com</a></p>
+          <p>Tel: <a href="tel:+17094567890">709-456-7890</a></p>
+                    
         </div>
       </div>
-
     </div>
-  </div>
+    </div>
+    </div>
+    
+</div>
 
-  <script src="/static/bootstrap.bundle.min.js"></script>
-</body>
 </html>
