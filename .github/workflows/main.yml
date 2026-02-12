@@ -74,9 +74,14 @@ jobs:
             ! -path "./node_modules/*" \
             ! -path "./client/node_modules/*" \
             ! -path "./server/node_modules/*" \
+            ! -path "./server/frontend/*" \
+            ! -path "./server/frontend/**" \
+            ! -path "./server/node_modules/*"
             ! -path "./build/*" \
             ! -path "./dist/*")
-
+            JS_FILES=$(find ./server -type f -name "*.js" \
+ 
+ 
           if [ -z "$JS_FILES" ]; then
             echo "No JavaScript files found to lint."
             exit 0
