@@ -63,7 +63,8 @@ jobs:
             "esversion": 11,
             "node": true,
             "browser": true,
-            "sub": true
+            "sub": true,
+            "asi": true
           }
           EOF
 
