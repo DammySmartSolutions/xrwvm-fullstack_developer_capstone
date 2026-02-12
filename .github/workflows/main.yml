@@ -40,46 +40,45 @@ jobs:
 
           echo "Linted Python successfully"
 
- lint_js:
-  name: Lint JavaScript Files
-  runs-on: ubuntu-latest
+  lint_js:
+    name: Lint JavaScript Files
+    runs-on: ubuntu-latest
 
-  steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: "20"
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
 
-    - name: Install JSHint
-      run: npm install -g jshint
+      - name: Install JSHint
+        run: npm install -g jshint
 
-    - name: Create JSHint config
-      run: |
-        cat > .jshintrc <<'EOF'
-        {
-          "esversion": 11,
-          "node": true,
-          "browser": true
-        }
-        EOF
+      - name: Create JSHint config
+        run: |
+          cat > .jshintrc <<'EOF'
+          {
+            "esversion": 11,
+            "node": true,
+            "browser": true
+          }
+          EOF
 
-    - name: Run JSHint
-      run: |
-        JS_FILES=$(find . -type f -name "*.js" \
-          ! -path "./node_modules/*" \
-          ! -path "./client/node_modules/*" \
-          ! -path "./server/node_modules/*" \
-          ! -path "./build/*" \
-          ! -path "./dist/*")
+      - name: Run JSHint
+        run: |
+          JS_FILES=$(find . -type f -name "*.js" \
+            ! -path "./node_modules/*" \
+            ! -path "./client/node_modules/*" \
+            ! -path "./server/node_modules/*" \
+            ! -path "./build/*" \
+            ! -path "./dist/*")
 
-        if [ -z "$JS_FILES" ]; then
-          echo "No JavaScript files found to lint."
-          exit 0
-        fi
+          if [ -z "$JS_FILES" ]; then
+            echo "No JavaScript files found to lint."
+            exit 0
+          fi
 
-        echo "$JS_FILES" | xargs jshint --config .jshintrc
-        echo "Linted JavaScript successfully"
-
+          echo "$JS_FILES" | xargs jshint --config .jshintrc
+          echo "Linted JavaScript successfully"
