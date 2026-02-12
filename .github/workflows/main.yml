@@ -30,7 +30,6 @@ jobs:
 
       - name: Run flake8
         run: |
-          # Focus on "real" problems so the workflow passes unless code is actually broken
           flake8 . \
             --count \
             --show-source \
@@ -68,20 +67,13 @@ jobs:
           }
           EOF
 
-      - name: Run JSHint
+      - name: Run JSHint (backend only)
         run: |
-          JS_FILES=$(find . -type f -name "*.js" \
-            ! -path "./node_modules/*" \
-            ! -path "./client/node_modules/*" \
-            ! -path "./server/node_modules/*" \
-            ! -path "./server/frontend/*" \
-            ! -path "./server/frontend/**" \
-            ! -path "./server/node_modules/*"
-            ! -path "./build/*" \
-            ! -path "./dist/*")
-            JS_FILES=$(find ./server -type f -name "*.js" \
- 
- 
+          JS_FILES=$(find ./server -type f -name "*.js" \
+            -not -path "./server/frontend/*" \
+            -not -path "./server/frontend/**" \
+            -not -path "./server/node_modules/*")
+
           if [ -z "$JS_FILES" ]; then
             echo "No JavaScript files found to lint."
             exit 0
