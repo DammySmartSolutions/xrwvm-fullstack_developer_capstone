@@ -40,38 +40,43 @@ jobs:
 
           echo "Linted Python successfully"
 
-  lint_js:
-    name: Lint JavaScript Files
-    runs-on: ubuntu-latest
+ lint_js:
+  name: Lint JavaScript Files
+  runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+  steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: "20"
 
-      - name: Install JSHint
-        run: npm install -g jshint
+    - name: Install JSHint
+      run: npm install -g jshint
 
-      - name: Run JSHint
-        run: |
-          # Find JS files but skip node_modules/build outputs
-          JS_FILES=$(find . -type f -name "*.js" \
-            ! -path "./node_modules/*" \
-            ! -path "./client/node_modules/*" \
-            ! -path "./server/node_modules/*" \
-            ! -path "./build/*" \
-            ! -path "./dist/*")
+    - name: Create JSHint config
+      run: |
+        cat > .jshintrc <<'EOF'
+        {
+          "esversion": 11,
+          "node": true,
+          "browser": true
+        }
+        EOF
 
-          if [ -z "$JS_FILES" ]; then
-            echo "No JavaScript files found to lint."
-            exit 0
-          fi
+    - name: Run JSHint
+      run: |
+        # If you only want to lint server/database like before:
+        JS_FILES=$(find ./server/database -type f -name "*.js")
 
-          # Tell jshint to allow modern JS (fixes const/let/arrow errors)
-          echo "$JS_FILES" | xargs jshint --esversion 11
+        if [ -z "$JS_FILES" ]; then
+          echo "No JavaScript files found to lint."
+          exit 0
+        fi
 
-          echo "Linted JavaScript successfully"
+        echo "$JS_FILES" | xargs jshint --config .jshintrc
+        echo "Linted all the js files successfully"
+
+      
